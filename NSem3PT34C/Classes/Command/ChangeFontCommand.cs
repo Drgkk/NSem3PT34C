@@ -1,29 +1,31 @@
-﻿using System;
+﻿using NSem3PT34.Classes.Command;
+using NSem3PT34.Classes.Structure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using NSem3PT34.Classes.Structure;
 using NSem3PT34.Classes.Util;
 
-namespace NSem3PT34.Classes.Command
+namespace NSem3PT34C.Classes.Command
 {
-    public class IncreaseFontSizeCommand : ICommand
+    public class ChangeFontCommand : ICommand
     {
-
         private DrawingContext graphics;
         private Composition cmp;
         private int startFrom;
         private int endAt;
         private List<Font> previousFonts;
+        private string changeTo;
 
-        public IncreaseFontSizeCommand(DrawingContext graphics, Composition cmp, int startFrom, int endAt)
+        public ChangeFontCommand(DrawingContext graphics, Composition cmp, int startFrom, int endAt, string changeTo)
         {
             this.graphics = graphics;
             this.cmp = cmp;
             this.startFrom = startFrom;
             this.endAt = endAt;
+            this.changeTo = changeTo;
             this.LoadPreviousFonts();
         }
 
@@ -36,8 +38,8 @@ namespace NSem3PT34.Classes.Command
                 for (int i = this.startFrom; i <= this.endAt; i++)
                 {
                     Font previousFont = this.cmp.GetChildren()[i].GetFont().Value;
-                    Font newFont = new Font(previousFont.Name,
-                        previousFont.Style, previousFont.Size + 1);
+                    Font newFont = new Font(changeTo,
+                        previousFont.Style, previousFont.Size);
                     fonts.Add(newFont);
                 }
 

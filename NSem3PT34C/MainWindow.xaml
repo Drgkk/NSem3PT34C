@@ -13,13 +13,7 @@
 
         <Menu Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="_Save" Command="{x:Static ApplicationCommands.Save}" />
-                <MenuItem Header="_Load"     Command="{x:Static ApplicationCommands.Open}" />
-                <Separator/>
                 <MenuItem Header="_End"   Command="{x:Static ApplicationCommands.Close}" />
-            </MenuItem>
-            <MenuItem Header="_Options">
-                <MenuItem Header="Einstellungen..." Name="MenuOptionsSettings" />
             </MenuItem>
         </Menu>
 
@@ -30,14 +24,14 @@
                 <Button x:Name="ToggleSpellCheck" Width="28" Height="28" ToolTip="Spell Check" Click="ToggleSpellCheck_Click">ABC</Button>
                 <Separator/>
                 <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Font:</TextBlock>
-                <ComboBox x:Name="FontComboBox" Width="180" SelectionChanged="FontComboBox_SelectionChanged">
+                <ComboBox x:Name="FontComboBox" Width="180" SelectionChanged="FontComboBox_OnSelectionChanged">
                     <ComboBoxItem>Segoe UI</ComboBoxItem>
                     <ComboBoxItem>Calibri</ComboBoxItem>
                     <ComboBoxItem>Times New Roman</ComboBoxItem>
                     <ComboBoxItem>Arial</ComboBoxItem>
                 </ComboBox>
                 <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Font Size:</TextBlock>
-                <ComboBox x:Name="FontSizeComboBox" Width="50" SelectionChanged="FontSizeComboBox_SelectionChanged">
+                <ComboBox x:Name="FontSizeComboBox" Width="50" SelectionChanged="FontSizeComboBox_OnSelectionChanged">
                     <ComboBoxItem>12</ComboBoxItem>
                     <ComboBoxItem>16</ComboBoxItem>
                     <ComboBoxItem>32</ComboBoxItem>

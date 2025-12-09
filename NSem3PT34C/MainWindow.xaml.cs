@@ -24,6 +24,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NSem3PT34C.Classes.Command;
 using NSem3PT34C.Classes.Structure;
 using Brushes = System.Windows.Media.Brushes;
 using Color = System.Drawing.Color;
@@ -114,6 +115,36 @@ namespace NSem3PT34
             }
         }
 
+        private void FontSizeComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.selectionRange != null)
+            {
+                int startFrom = this.GetStartFrom();
+                int endAt = this.GetEndAt();
+                this.selectionRange = null;
+                if (FontSizeComboBox.SelectedItem is ComboBoxItem ci)
+                {
+                    ICommand cmd = new ChangeFontSizeCommand(graphics, this.comp, startFrom, endAt, Int32.Parse(ci.Content.ToString()));
+                    CommandManager.GetInstance().Execute(cmd);
+                }
+            }
+        }
+
+        private void FontComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.selectionRange != null)
+            {
+                int startFrom = this.GetStartFrom();
+                int endAt = this.GetEndAt();
+                this.selectionRange = null;
+                if (FontComboBox.SelectedItem is ComboBoxItem ci)
+                {
+                    ICommand cmd = new ChangeFontCommand(graphics, this.comp, startFrom, endAt, ci.Content.ToString());
+                    CommandManager.GetInstance().Execute(cmd);
+                }
+            }
+        }
+
         private void ToggleSpellCheck_Click(object sender, RoutedEventArgs e)
         {
             spellCheckEnabled = !spellCheckEnabled;
@@ -123,6 +154,8 @@ namespace NSem3PT34
 
         private void MainWindow_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (FontComboBox.IsDropDownOpen || FontSizeComboBox.IsDropDownOpen)
+                return;
             Point mousePos = e.GetPosition(DrawingCanvas);
             x1 = mousePos.X;
             y1 = mousePos.Y;
@@ -153,6 +186,8 @@ namespace NSem3PT34
 
         private void MainWindow_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
+            if (FontComboBox.IsDropDownOpen || FontSizeComboBox.IsDropDownOpen)
+                return;
             Point mousePos = e.GetPosition(DrawingCanvas);
             x2 = mousePos.X;
             y2 = mousePos.Y;
@@ -306,22 +341,6 @@ namespace NSem3PT34
                         UpdateObserver();
                     }
                 }
-            }
-            else if (e.Key == Key.G && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                int startFrom = this.GetStartFrom();
-                int endAt = this.GetEndAt();
-                this.selectionRange = null;
-                cmd = new IncreaseFontSizeCommand(graphics, this.comp, startFrom, endAt);
-                CommandManager.GetInstance().Execute(cmd);
-            }
-            else if (e.Key == Key.L && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                int startFrom = this.GetStartFrom();
-                int endAt = this.GetEndAt();
-                this.selectionRange = null;
-                cmd = new DecreaseFontSizeCommand(graphics, this.comp, startFrom, endAt);
-                CommandManager.GetInstance().Execute(cmd);
             }
             else if (e.Key == Key.B && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
@@ -740,6 +759,9 @@ namespace NSem3PT34
             this.selectionRange = null;
             UpdateObserver();
         }
+
+
+        
     }
 
 

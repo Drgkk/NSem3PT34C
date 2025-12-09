@@ -1,29 +1,31 @@
-﻿using System;
+﻿using NSem3PT34.Classes.Command;
+using NSem3PT34.Classes.Structure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using NSem3PT34.Classes.Structure;
 using NSem3PT34.Classes.Util;
 
-namespace NSem3PT34.Classes.Command
+namespace NSem3PT34C.Classes.Command
 {
-    public class DecreaseFontSizeCommand : ICommand
+    public class ChangeFontSizeCommand : ICommand
     {
         private DrawingContext graphics;
-        private Composition comp;
+        private Composition cmp;
         private int startFrom;
         private int endAt;
         private List<Font> previousFonts;
+        private int changeTo;
 
-        public DecreaseFontSizeCommand(DrawingContext graphics, Composition comp,
-            int startFrom, int endAt)
+        public ChangeFontSizeCommand(DrawingContext graphics, Composition cmp, int startFrom, int endAt, int changeTo)
         {
             this.graphics = graphics;
-            this.comp = comp;
+            this.cmp = cmp;
             this.startFrom = startFrom;
             this.endAt = endAt;
+            this.changeTo = changeTo;
             this.LoadPreviousFonts();
         }
 
@@ -35,13 +37,13 @@ namespace NSem3PT34.Classes.Command
                 List<Font> fonts = new List<Font>();
                 for (int i = this.startFrom; i <= this.endAt; i++)
                 {
-                    Font previousFont = this.comp.GetChildren()[i].GetFont().Value;
+                    Font previousFont = this.cmp.GetChildren()[i].GetFont().Value;
                     Font newFont = new Font(previousFont.Name,
-                        previousFont.Style, previousFont.Size <= 8 ? 8 : previousFont.Size - 1);
+                        previousFont.Style, changeTo);
                     fonts.Add(newFont);
                 }
 
-                this.comp.UpdateFont(fonts, startFrom, endAt);
+                this.cmp.UpdateFont(fonts, startFrom, endAt);
             }
             catch (Exception ex)
             {
@@ -54,7 +56,7 @@ namespace NSem3PT34.Classes.Command
 
         public void UnExecute()
         {
-            this.comp.UpdateFont(this.previousFonts, this.startFrom, this.endAt);
+            this.cmp.UpdateFont(this.previousFonts, this.startFrom, this.endAt);
         }
 
         public bool CanUndo()
@@ -67,7 +69,7 @@ namespace NSem3PT34.Classes.Command
             this.previousFonts = new List<Font>();
             for (int i = this.startFrom; i <= this.endAt; i++)
             {
-                this.previousFonts.Add(this.comp.GetChildren()[i].GetFont().Value);
+                this.previousFonts.Add(this.cmp.GetChildren()[i].GetFont().Value);
             }
         }
     }

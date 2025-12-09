@@ -60,12 +60,12 @@ namespace NSem3PT34C.Classes.Structure
 
         public override Font? GetFont()
         {
-            return null;
+            return this.font;
         }
 
         public override void SetFont(Font font)
         {
-            
+            this.font = font;
         }
 
         public override void Accept(IVisitor visitor)
