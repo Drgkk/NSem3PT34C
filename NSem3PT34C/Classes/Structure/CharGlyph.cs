@@ -118,6 +118,19 @@ namespace NSem3PT34.Classes.Structure
             return (currentLeft + 2 * glyphWidth) >= frameWidth;
         }
 
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            CharGlyph other = (CharGlyph)obj;
+            return ch == other.ch && EqualityComparer<Font>.Default.Equals(font, other.font);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(ch, font);
+        }
 
         public char GetChar()
         {

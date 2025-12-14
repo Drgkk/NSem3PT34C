@@ -1,31 +1,36 @@
-﻿using NSem3PT34.Classes.Structure;
-using NSem3PT34C.Classes.Command;
+﻿using NSem3PT34.Classes;
+using NSem3PT34.Classes.Command;
+using NSem3PT34.Classes.Structure;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Documents;
-using System.Windows.Media;
 using NSem3PT34.Classes.Util;
-using Moq;
-using NSem3PT34.Classes;
-using NSem3PT34.Classes.Command;
 
 namespace TestProject1.CommandTests
 {
-    public class ChangeFontCommandTests
+    public class InsertCommandTest
     {
-
-
         [Fact]
-        public void Execute_CorrectParameters_ChangesFontNames()
+        public void Execute_CorrectParameters_InsertsGlyphAtPosition()
         {
-            int startFrom = 1;
-            int endAt = 5;
-            string changeTo = "Arial";
+            int from = 3;
+            Glyph insertGlyph = new CharGlyph('I', new Font("Times New Roman", FontStyle.Normal, 14));
             Composition comp = new Composition();
+            List<Glyph> children = new List<Glyph>([
+                new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('I', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('o', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('w', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('o', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('r', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14))
+            ]);
             comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
             comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 2);
@@ -37,26 +42,37 @@ namespace TestProject1.CommandTests
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
             comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
 
-            ChangeFontCommand changeFontCmd = new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
+            InsertCommand insertCommand = new InsertCommand(comp, insertGlyph, from);
 
 
-            changeFontCmd.Execute();
+            insertCommand.Execute();
+            List<Glyph> changedChildren = comp.GetChildren();
 
-            for (int i = startFrom; i <= endAt; i++)
+            for (int i = 0; i < children.Count; i++)
             {
-                var font = comp.GetChildren()[i].GetFont().Value;
-                Assert.Equal(changeTo, font.Name);
-                Assert.Equal(14, font.Size);
+                Assert.Equal(changedChildren[i], children[i]);
             }
         }
 
+
         [Fact]
-        public void Constructor_OutOfRange_ThrowsException()
+        public void Unexecute_CorrectParameters_RemovesInsertedGlyph()
         {
-            int startFrom = 1;
-            int endAt = 12;
-            string changeTo = "Arial";
+            int from = 3;
+            Glyph insertGlyph = new CharGlyph('I', new Font("Times New Roman", FontStyle.Normal, 14));
             Composition comp = new Composition();
+            List<Glyph> children = new List<Glyph>([
+                new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('o', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('w', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('o', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('r', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)),
+                new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14))
+            ]);
             comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
             comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 2);
@@ -68,39 +84,16 @@ namespace TestProject1.CommandTests
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
             comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
 
-            var act = () => new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
-            Assert.Throws<ArgumentOutOfRangeException>(act);
-            
-        }
-
-        [Fact]
-        public void Unexecute_CorrectParameters_ReturnsFontNames()
-        {
-            int startFrom = 1;
-            int endAt = 5;
-            string changeTo = "Arial";
-            Composition comp = new Composition();
-            comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
-            comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
-            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 2);
-            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 3);
-            comp.Insert(new CharGlyph('o', new Font("Times New Roman", FontStyle.Normal, 14)), 4);
-            comp.Insert(new CharGlyph('w', new Font("Times New Roman", FontStyle.Normal, 14)), 5);
-            comp.Insert(new CharGlyph('o', new Font("Times New Roman", FontStyle.Normal, 14)), 6);
-            comp.Insert(new CharGlyph('r', new Font("Times New Roman", FontStyle.Normal, 14)), 7);
-            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
-            comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
-
-            ChangeFontCommand changeFontCmd = new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
+            InsertCommand insertCommand = new InsertCommand(comp, insertGlyph, from);
 
 
-            changeFontCmd.Execute();
-            changeFontCmd.UnExecute();
-            for (int i = startFrom; i <= endAt; i++)
+            insertCommand.Execute();
+            insertCommand.UnExecute();
+            List<Glyph> changedChildren = comp.GetChildren();
+
+            for (int i = 0; i < children.Count; i++)
             {
-                var font = comp.GetChildren()[i].GetFont().Value;
-                Assert.Equal("Times New Roman", font.Name);
-                Assert.Equal(14, font.Size);
+                Assert.Equal(changedChildren[i], children[i]);
             }
 
         }
@@ -110,7 +103,6 @@ namespace TestProject1.CommandTests
         {
             int startFrom = 1;
             int endAt = 5;
-            string changeTo = "Arial";
             Composition comp = new Composition();
             comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
             comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
@@ -123,10 +115,10 @@ namespace TestProject1.CommandTests
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
             comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
 
-            ChangeFontCommand changeFontCmd = new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
+            DeleteCommand deleteCommand = new DeleteCommand(comp, startFrom, endAt);
 
 
-            Assert.True(changeFontCmd.CanUndo());
+            Assert.True(deleteCommand.CanUndo());
 
         }
     }

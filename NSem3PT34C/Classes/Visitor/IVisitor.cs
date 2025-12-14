@@ -8,12 +8,12 @@ using NSem3PT34C.Classes.Structure;
 
 namespace NSem3PT34.Classes.Visitor
 {
-    public abstract class IVisitor
+    public interface IVisitor
     {
-        public abstract void Visit(CharGlyph ch);
+        public void Visit(CharGlyph ch);
 
-        public abstract void Visit(Row row);
+        public void Visit(Row row);
 
-        public abstract void Visit(BreakGlyph bg);
+        public void Visit(BreakGlyph bg);
     }
 }

@@ -2,29 +2,21 @@
 using NSem3PT34C.Classes.Command;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Documents;
-using System.Windows.Media;
 using NSem3PT34.Classes.Util;
-using Moq;
-using NSem3PT34.Classes;
-using NSem3PT34.Classes.Command;
 
 namespace TestProject1.CommandTests
 {
-    public class ChangeFontCommandTests
+    public class ChangeFontSizeCommandTest
     {
-
-
         [Fact]
-        public void Execute_CorrectParameters_ChangesFontNames()
+        public void Execute_CorrectParameters_ChangesFontSizes()
         {
             int startFrom = 1;
             int endAt = 5;
-            string changeTo = "Arial";
+            int changeTo = 25;
             Composition comp = new Composition();
             comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
             comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
@@ -37,16 +29,17 @@ namespace TestProject1.CommandTests
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
             comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
 
-            ChangeFontCommand changeFontCmd = new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
+            ChangeFontSizeCommand changeFontSizeCmd = new ChangeFontSizeCommand(null, comp, startFrom, endAt, changeTo);
 
 
-            changeFontCmd.Execute();
+            changeFontSizeCmd.Execute();
 
             for (int i = startFrom; i <= endAt; i++)
             {
                 var font = comp.GetChildren()[i].GetFont().Value;
-                Assert.Equal(changeTo, font.Name);
-                Assert.Equal(14, font.Size);
+
+                Assert.Equal(changeTo, font.Size);
+                Assert.Equal("Times New Roman", font.Name);
             }
         }
 
@@ -55,7 +48,7 @@ namespace TestProject1.CommandTests
         {
             int startFrom = 1;
             int endAt = 12;
-            string changeTo = "Arial";
+            int changeTo = 25;
             Composition comp = new Composition();
             comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
             comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
@@ -68,9 +61,9 @@ namespace TestProject1.CommandTests
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
             comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
 
-            var act = () => new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
+            var act = () => new ChangeFontSizeCommand(null, comp, startFrom, endAt, changeTo);
             Assert.Throws<ArgumentOutOfRangeException>(act);
-            
+
         }
 
         [Fact]
@@ -78,7 +71,7 @@ namespace TestProject1.CommandTests
         {
             int startFrom = 1;
             int endAt = 5;
-            string changeTo = "Arial";
+            int changeTo = 25;
             Composition comp = new Composition();
             comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
             comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
@@ -91,16 +84,16 @@ namespace TestProject1.CommandTests
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
             comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
 
-            ChangeFontCommand changeFontCmd = new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
+            ChangeFontSizeCommand changeFontSizeCmd = new ChangeFontSizeCommand(null, comp, startFrom, endAt, changeTo);
 
 
-            changeFontCmd.Execute();
-            changeFontCmd.UnExecute();
+            changeFontSizeCmd.Execute();
+            changeFontSizeCmd.UnExecute();
             for (int i = startFrom; i <= endAt; i++)
             {
                 var font = comp.GetChildren()[i].GetFont().Value;
-                Assert.Equal("Times New Roman", font.Name);
                 Assert.Equal(14, font.Size);
+                Assert.Equal("Times New Roman", font.Name);
             }
 
         }

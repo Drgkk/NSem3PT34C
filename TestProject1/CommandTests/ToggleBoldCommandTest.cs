@@ -2,29 +2,21 @@
 using NSem3PT34C.Classes.Command;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Documents;
-using System.Windows.Media;
-using NSem3PT34.Classes.Util;
-using Moq;
-using NSem3PT34.Classes;
 using NSem3PT34.Classes.Command;
+using NSem3PT34.Classes.Util;
 
 namespace TestProject1.CommandTests
 {
-    public class ChangeFontCommandTests
+    public class ToggleBoldCommandTest
     {
-
-
         [Fact]
-        public void Execute_CorrectParameters_ChangesFontNames()
+        public void Execute_CorrectParameters_TogglesBold()
         {
             int startFrom = 1;
             int endAt = 5;
-            string changeTo = "Arial";
             Composition comp = new Composition();
             comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
             comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
@@ -37,16 +29,44 @@ namespace TestProject1.CommandTests
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
             comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
 
-            ChangeFontCommand changeFontCmd = new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
+            ToggleBoldCommand boldCommand = new ToggleBoldCommand(null, comp, startFrom, endAt);
 
 
-            changeFontCmd.Execute();
+            boldCommand.Execute();
 
             for (int i = startFrom; i <= endAt; i++)
             {
                 var font = comp.GetChildren()[i].GetFont().Value;
-                Assert.Equal(changeTo, font.Name);
-                Assert.Equal(14, font.Size);
+                Assert.Equal(FontStyle.Bold, font.Style);
+            }
+        }
+
+        [Fact]
+        public void Execute_CorrectParameters_UntogglesBold()
+        {
+            int startFrom = 1;
+            int endAt = 5;
+            Composition comp = new Composition();
+            comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Bold, 14)), 0);
+            comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Bold, 14)), 1);
+            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Bold, 14)), 2);
+            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Bold, 14)), 3);
+            comp.Insert(new CharGlyph('o', new Font("Times New Roman", FontStyle.Bold, 14)), 4);
+            comp.Insert(new CharGlyph('w', new Font("Times New Roman", FontStyle.Bold, 14)), 5);
+            comp.Insert(new CharGlyph('o', new Font("Times New Roman", FontStyle.Bold, 14)), 6);
+            comp.Insert(new CharGlyph('r', new Font("Times New Roman", FontStyle.Bold, 14)), 7);
+            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Bold, 14)), 8);
+            comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Bold, 14)), 9);
+
+            ToggleBoldCommand boldCommand = new ToggleBoldCommand(null, comp, startFrom, endAt);
+
+
+            boldCommand.Execute();
+
+            for (int i = startFrom; i <= endAt; i++)
+            {
+                var font = comp.GetChildren()[i].GetFont().Value;
+                Assert.Equal(FontStyle.Normal, font.Style);
             }
         }
 
@@ -55,30 +75,28 @@ namespace TestProject1.CommandTests
         {
             int startFrom = 1;
             int endAt = 12;
-            string changeTo = "Arial";
             Composition comp = new Composition();
-            comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
-            comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
-            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 2);
-            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 3);
-            comp.Insert(new CharGlyph('o', new Font("Times New Roman", FontStyle.Normal, 14)), 4);
-            comp.Insert(new CharGlyph('w', new Font("Times New Roman", FontStyle.Normal, 14)), 5);
-            comp.Insert(new CharGlyph('o', new Font("Times New Roman", FontStyle.Normal, 14)), 6);
-            comp.Insert(new CharGlyph('r', new Font("Times New Roman", FontStyle.Normal, 14)), 7);
-            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
-            comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
+            comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Bold, 14)), 0);
+            comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Bold, 14)), 1);
+            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Bold, 14)), 2);
+            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Bold, 14)), 3);
+            comp.Insert(new CharGlyph('o', new Font("Times New Roman", FontStyle.Bold, 14)), 4);
+            comp.Insert(new CharGlyph('w', new Font("Times New Roman", FontStyle.Bold, 14)), 5);
+            comp.Insert(new CharGlyph('o', new Font("Times New Roman", FontStyle.Bold, 14)), 6);
+            comp.Insert(new CharGlyph('r', new Font("Times New Roman", FontStyle.Bold, 14)), 7);
+            comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Bold, 14)), 8);
+            comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Bold, 14)), 9);
 
-            var act = () => new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
+            var act = () => new ToggleBoldCommand(null, comp, startFrom, endAt);
             Assert.Throws<ArgumentOutOfRangeException>(act);
-            
+
         }
 
         [Fact]
-        public void Unexecute_CorrectParameters_ReturnsFontNames()
+        public void Unexecute_CorrectParameters_ReversesBoldness()
         {
             int startFrom = 1;
-            int endAt = 5;
-            string changeTo = "Arial";
+            int endAt = 7;
             Composition comp = new Composition();
             comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
             comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
@@ -91,16 +109,15 @@ namespace TestProject1.CommandTests
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
             comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
 
-            ChangeFontCommand changeFontCmd = new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
+            ToggleBoldCommand boldCommand = new ToggleBoldCommand(null, comp, startFrom, endAt);
 
 
-            changeFontCmd.Execute();
-            changeFontCmd.UnExecute();
+            boldCommand.Execute();
+            boldCommand.UnExecute();
             for (int i = startFrom; i <= endAt; i++)
             {
                 var font = comp.GetChildren()[i].GetFont().Value;
-                Assert.Equal("Times New Roman", font.Name);
-                Assert.Equal(14, font.Size);
+                Assert.Equal(FontStyle.Normal, font.Style);
             }
 
         }
@@ -109,8 +126,7 @@ namespace TestProject1.CommandTests
         public void CanUndo_Always_ReturnsTrue()
         {
             int startFrom = 1;
-            int endAt = 5;
-            string changeTo = "Arial";
+            int endAt = 7;
             Composition comp = new Composition();
             comp.Insert(new CharGlyph('h', new Font("Times New Roman", FontStyle.Normal, 14)), 0);
             comp.Insert(new CharGlyph('e', new Font("Times New Roman", FontStyle.Normal, 14)), 1);
@@ -123,10 +139,10 @@ namespace TestProject1.CommandTests
             comp.Insert(new CharGlyph('l', new Font("Times New Roman", FontStyle.Normal, 14)), 8);
             comp.Insert(new CharGlyph('d', new Font("Times New Roman", FontStyle.Normal, 14)), 9);
 
-            ChangeFontCommand changeFontCmd = new ChangeFontCommand(null, comp, startFrom, endAt, changeTo);
+            ToggleBoldCommand boldCommand = new ToggleBoldCommand(null, comp, startFrom, endAt);
 
 
-            Assert.True(changeFontCmd.CanUndo());
+            Assert.True(boldCommand.CanUndo());
 
         }
     }

@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NSem3PT34C.Classes.Structure.BreakGlyph" Collapsed="true">
+    <Position X="6" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIAAAQAAAAAAgAAAAAAAADAAAgAAAAAAAAAQEAAAgA=</HashCode>
+      <FileName>Classes\Structure\BreakGlyph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34.Classes.Structure.CharGlyph" Collapsed="true">
+    <Position X="8.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIAAAQAAAgAAgAAAAAAAADAAAiAAAAAAAAAQEAAAgA=</HashCode>
+      <FileName>Classes\Structure\CharGlyph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34.Classes.Structure.Composition" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAEAAAAgAAAQAAAAQBAAAgAAAYAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Classes\Structure\Composition.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NSem3PT34.Classes.Structure.Row" Collapsed="true">
+    <Position X="10.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AICIAARIAAAAAgAAgAIIgAjAAAgIAAAgAACAQEQAAiA=</HashCode>
+      <FileName>Classes\Structure\Row.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34.Classes.Structure.SimpleCompositor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Structure\SimpleCompositor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NSem3PT34.Classes.Glyph" Collapsed="true">
+    <Position X="8.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAQAAAAAAgAAAAAAAADAAAgAAAAAAAAAQEAAAgA=</HashCode>
+      <FileName>Classes\Structure\Glyph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34C.Classes.Command.ChangeFontCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAIAASQAAAAEAAAAAAAAAAgAAAAAAAAAABA=</HashCode>
+      <FileName>Classes\Command\ChangeFontCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NSem3PT34C.Classes.Command.ChangeFontSizeCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAIAASQAAAAEAAAAAAAAAAgAAAAAAAAAABA=</HashCode>
+      <FileName>Classes\Command\ChangeFontSizeCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NSem3PT34.Classes.Command.CommandManager" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAIABAQgAAAAAAABhABAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Classes\Command\CommandManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34.Classes.Command.DeleteCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAAAAQQAAAAAAAAAAAAAAQAAAABAAAAAABA=</HashCode>
+      <FileName>Classes\Command\DeleteCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NSem3PT34.Classes.Command.InsertCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAAAAAwAAAAAAAAAAAAAAwAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Command\InsertCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NSem3PT34.Classes.Command.ToggleBoldCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAIAAQQAAAAEAAAAAAAAAQgAAAAAAAAAABA=</HashCode>
+      <FileName>Classes\Command\ToggleBoldCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NSem3PT34.Classes.Command.ToggleItalicCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAIAAQQAAAAEAAAAAAAAAQgAAAAAAAAAABA=</HashCode>
+      <FileName>Classes\Command\ToggleItalicCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NSem3PT34.Classes.Util.SpellChecker" Collapsed="true">
+    <Position X="7" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAgAAAAAAAEBABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Util\SpellChecker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34.Classes.Util.ViewEventArgs" Collapsed="true">
+    <Position X="8.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIgAQAAAAAAAAAAIgAgAAAAIQAggAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Util\ViewEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34.Classes.Visitor.IVisitor" Collapsed="true">
+    <Position X="14.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Visitor\IVisitor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34.Classes.Visitor.SpellingCheckingVisitor" Collapsed="true">
+    <Position X="14.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAABQAAAAAAAAAAQAAAAAAAAAACIAAAAA=</HashCode>
+      <FileName>Classes\Visitor\SpellingCheckingVisitor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34C.Classes.VM.ConcreteDocument" Collapsed="true">
+    <Position X="17.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\VM\ConcreteDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34C.Classes.VM.Document" Collapsed="true">
+    <Position X="18.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAgAQAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\VM\Document.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34C.Classes.VM.ScrollableDocument" Collapsed="true">
+    <Position X="19.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\VM\ScrollableDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34C.Classes.VM.SelectionRange" Collapsed="true">
+    <Position X="22" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAABAAAAAAAAQAogBAABAEwAAgAAAAAAgAAAAAA=</HashCode>
+      <FileName>Classes\VM\SelectionRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34.Classes.VM.UiGlyph" Collapsed="true">
+    <Position X="23.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAgAAAAAIAAAAAAIAoAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\VM\UiGlyph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NSem3PT34.MyCanvas" Collapsed="true">
+    <Position X="26.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAUAAAAAAAAAAAAAAAACIAQAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Classes\MyCanvas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="NSem3PT34.Classes.Util.Font" Collapsed="true">
+    <Position X="7" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Util\FontStructs.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="NSem3PT34.Classes.Structure.ICompositor" Collapsed="true">
+    <Position X="13" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Structure\ICompositor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NSem3PT34.Classes.Command.ICommand" Collapsed="true">
+    <Position X="18.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Command\ICommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NSem3PT34.Classes.Util.IObserver" Collapsed="true">
+    <Position X="7" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Util\IObserver.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NSem3PT34.Classes.Util.ISpellingErrorHandler" Collapsed="true">
+    <Position X="8.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Util\ISpellingErrorHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NSem3PT34.Classes.Util.ISubject" Collapsed="true">
+    <Position X="7" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Classes\Util\ISubject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="NSem3PT34.Classes.Util.FontStyle" Collapsed="true">
+    <Position X="7" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAEAAIAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Classes\Util\FontStructs.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

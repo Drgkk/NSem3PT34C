@@ -10,7 +10,7 @@ namespace NSem3PT34.Classes.Util
     public class SpellChecker
     {
         private static SpellChecker instance;
-        private HashSet<String> dictionary = new HashSet<String>();
+        private HashSet<string> dictionary = new HashSet<string>();
 
         private SpellChecker() {}
 
@@ -29,7 +29,7 @@ namespace NSem3PT34.Classes.Util
             return instance;
         }
 	
-        public void LoadDictionary(String dictionaryPath)
+        public void LoadDictionary(string dictionaryPath)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace NSem3PT34.Classes.Util
             }
         }
 
-        public bool IsMisspelled(String word)
+        public bool IsMisspelled(string word)
         {
             if (string.IsNullOrEmpty(word)) return true;
             return !dictionary.Contains(word);

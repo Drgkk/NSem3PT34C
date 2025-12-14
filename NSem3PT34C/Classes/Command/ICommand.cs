@@ -14,6 +14,5 @@ namespace NSem3PT34.Classes.Command
 
         bool CanUndo();
 
-        String ToString();
     }
 }

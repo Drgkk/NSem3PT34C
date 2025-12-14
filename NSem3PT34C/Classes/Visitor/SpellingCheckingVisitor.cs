@@ -30,7 +30,7 @@ namespace NSem3PT34.Classes.Visitor
             this.spellingErrorHandler = spellingErrorHandler;
         }
 
-        public override void Visit(CharGlyph character)
+        public void Visit(CharGlyph character)
         {
             if (char.IsLetter(character.GetChar())
                 || char.IsDigit(character.GetChar()))
@@ -63,7 +63,7 @@ namespace NSem3PT34.Classes.Visitor
         }
 
 
-        public override void Visit(Row row)
+        public void Visit(Row row)
         {
             List<UiGlyph> glyphs = row.GetUiGlyphs();
             foreach (UiGlyph uiGlyph in glyphs)
@@ -75,7 +75,7 @@ namespace NSem3PT34.Classes.Visitor
 
         }
 
-        public override void Visit(BreakGlyph bg)
+        public void Visit(BreakGlyph bg)
         {
             this.uiGlyphs.Remove(lastAdded);
             this.SpellCheck();

@@ -557,6 +557,7 @@ namespace NSem3PT34
             }
         }
 
+
         public void UpdateObserver()
         {
             DrawingContext dc = DrawingCanvas.RenderStart();
@@ -604,7 +605,7 @@ namespace NSem3PT34
         public void HandleDrawing(List<Row> rows, ViewEventArgs args)
         {
             this.document.Draw(rows, args, this.index);
-            this.UpdateLogicalLocations(args);
+            this.document.UpdateLogicalLocations(args, this.index);
 
             if (this.spellCheckEnabled)
             {
@@ -624,39 +625,7 @@ namespace NSem3PT34
             
         }
 
-        public void UpdateLogicalLocations(ViewEventArgs args)
-        {
-            int i, j;
-            Point dummyPoint = new Point(Int32.MinValue, Int32.MinValue);
-            for (i = 0; i < this.index; i++)
-            {
-                Row currentRow = this.document.GetRows()[i];
-                currentRow.SetTop(Int32.MinValue);
-                currentRow.SetLeft(Int32.MinValue);
-                foreach (UiGlyph uiGlyph in currentRow.GetUiGlyphs())
-                {
-                    uiGlyph.SetPosition(dummyPoint);
-                }
-            }
-
-            double currentTop = args.GetTop();
-            double currentLeft = args.GetLeft();
-            for (j = i; j < this.document.GetRows().Count; j++)
-            {
-                Row currentRow = this.document.GetRows()[j];
-                currentRow.SetTop(currentTop);
-                currentRow.SetLeft(currentLeft);
-                foreach (UiGlyph uiGlyph in currentRow.GetUiGlyphs())
-                {
-                    Point position = new Point(currentLeft, currentTop);
-                    uiGlyph.SetPosition(position);
-                    currentLeft += uiGlyph.GetGlyph().GetWidth() + 2;
-                }
-
-                currentTop += currentRow.GetHeight();
-                currentLeft = args.GetLeft();
-            }
-        }
+        
         public void SelectGlyphs(ViewEventArgs args)
         {
             int start, end;
