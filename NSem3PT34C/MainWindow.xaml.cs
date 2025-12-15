@@ -45,7 +45,6 @@ namespace NSem3PT34
         private int index;
         private bool spellCheckEnabled;
         private SelectionRange selectionRange;
-        private List<UiGlyph[]> misspelledGlyphs;
 
         public MainWindow()
         {
